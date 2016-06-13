@@ -23,3 +23,12 @@ void set_fan(int box, boolean dir, boolean state) {
   digitalWrite(fanPins[box][dir], state);
   
 }
+
+
+// Stops all fans.
+void stop_all_fans() {
+   for (int i = 0; i < BOXAMOUNT; i++) {
+      set_fan(i, IN, OFF);
+      set_fan(i, OUT, OFF);
+   } 
+}

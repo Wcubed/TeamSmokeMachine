@@ -10,6 +10,7 @@ const bool OFF = false;
 // Number of boxes.
 const int BOXAMOUNT = 5;
 
+// ---- Pin numbers -----------------------------------------------
 
 // Fan controll pin numbers.
 const int fanPins[BOXAMOUNT][2] = {

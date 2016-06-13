@@ -5,9 +5,10 @@
 
 void setup() {
   setup_fans();
+  stop_all_fans();
 }
 
 
 void loop() {
-  set_fan(1, IN, ON);
+  set_fan(1, IN, OFF);
 }
