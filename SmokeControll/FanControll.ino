@@ -20,4 +20,6 @@ void setup_fans() {
 // state: Either ON or OFF.
 void set_fan(int box, boolean dir, boolean state) {
   
+  digitalWrite(fanPins[box][dir], state);
+  
 }
