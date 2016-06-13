@@ -59,18 +59,31 @@ void parseCommand(String command) {
   
   if (command.length() == 4) {
     
-    char device = int(command[0]);
-    byte boxNum = command[1];
+    // Get the device type.
+    byte device = byte(command[0]);
+    
+    // Get the box number.
+    byte boxNum = command.substring(1,2).toInt();
     
     boolean dir = false;
     char dirChar = command[2];
     
-    boolean state = int(command[3]);
+    boolean state = false;
+    char stateChar = command[3];
     
     if (dirChar == 'i') {
       dir = IN;
-    } else if (dirChar == 'f') {
+    } else if (dirChar == 'o') {
       dir = OUT;
+    } else {
+      // ! Invalid command.
+      return;
+    }
+    
+    if (stateChar == '1') {
+      state = ON;
+    } else if (stateChar == '0') {
+      state = OFF;
     } else {
       // ! Invalid command.
       return;
@@ -78,14 +91,23 @@ void parseCommand(String command) {
     
     
     if (device == 'f') {
-      Serial.println("Setting fan.");
+      
+      Serial.print("Setting fan ");
       set_fan(boxNum, dir, state);
       
     } else if (device == 'v') {
-      Serial.println("Setting valve.");
+      
+      Serial.print("Setting valve ");
       set_valve(boxNum, dir, state);
       
     }
+    
+    // Debugging.
+    Serial.print(boxNum);
+    Serial.print(" ");
+    Serial.print(dir);
+    Serial.print(" to ");
+    Serial.println(state);
   }
 }
 
