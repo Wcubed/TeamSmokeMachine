@@ -1,3 +1,5 @@
+#include <Servo.h> //add the servo library
+
 // Direction variables.
 const bool IN = 0;
 const bool OUT = 1;
@@ -12,7 +14,7 @@ const int BOXAMOUNT = 5;
 
 // ---- Pin numbers -----------------------------------------------
 
-// Fan controll pin numbers.
+// Fan control pin numbers.
 const int fanPins[BOXAMOUNT][2] = {
   {1, 2},
   {3, 4},
@@ -21,7 +23,7 @@ const int fanPins[BOXAMOUNT][2] = {
   {9, 10}
 };
 
-// Valve controll pin numbers.
+// Valve control pin numbers.
 const int valvePins[BOXAMOUNT][2] = {
   {1, 2},
   {3, 4},
@@ -30,3 +32,5 @@ const int valvePins[BOXAMOUNT][2] = {
   {9, 10}
 };
 
+
+Servo valveServos[BOXAMOUNT][2];

@@ -28,12 +28,64 @@ void setup() {
 void loop() {
   // Check if there is a command.
   if (newCommand) {
-    // Just echo for now.
-    Serial.print(inputString);
+    // Parse the command.
+    parseCommand(inputString);
     
     // Clear the input string.
     inputString = "";
     newCommand = false;
+  }
+}
+
+
+// ---- parseCommand ---------------------------------------------------------------------------
+
+// A typical command looks like this:
+// f2i0
+//
+// It consists of:
+// - Device (f for fan, v for valve).
+// - Box number (0 -> BOXAMOUNT).
+// - IN (i) or OUT (o).
+// - ON (1) or OFF (0).
+
+// Parses a command given to it.
+void parseCommand(String command) {
+  // Remove whitespaces and newlines.
+  command.trim();
+  
+  // Echo the command for debugging.
+  Serial.println(command);
+  
+  if (command.length() == 4) {
+    
+    char device = int(command[0]);
+    byte boxNum = command[1];
+    
+    boolean dir = false;
+    char dirChar = command[2];
+    
+    boolean state = int(command[3]);
+    
+    if (dirChar == 'i') {
+      dir = IN;
+    } else if (dirChar == 'f') {
+      dir = OUT;
+    } else {
+      // ! Invalid command.
+      return;
+    }
+    
+    
+    if (device == 'f') {
+      Serial.println("Setting fan.");
+      set_fan(boxNum, dir, state);
+      
+    } else if (device == 'v') {
+      Serial.println("Setting valve.");
+      set_valve(boxNum, dir, state);
+      
+    }
   }
 }
 
