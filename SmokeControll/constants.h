@@ -16,11 +16,11 @@ const int BOXAMOUNT = 5;
 
 // Fan control pin numbers.
 const int fanPins[BOXAMOUNT][2] = {
-  {1, 2},
-  {3, 4},
-  {5, 6},
-  {7, 8},
-  {9, 10}
+  {22, 23},
+  {24, 25},
+  {26, 27},
+  {28, 29},
+  {30, 31}
 };
 
 // Valve control pin numbers.

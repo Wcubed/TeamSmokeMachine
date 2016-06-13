@@ -21,6 +21,8 @@ void setup() {
   setup_fans();
   setup_valves();
   
+  // Close everything;
+  stop_all_fans();
   close_all_valves();
 }
 

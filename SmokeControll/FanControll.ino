@@ -13,12 +13,14 @@ void setup_fans() {
 }
 
 
-// Sets a fan to a certain speed.
+// Sets the state of a fan.
 //
 // box: Box number.
 // dir: Direction of the smoke, either IN or OUT.
 // state: Either ON or OFF.
 void set_fan(int boxNum, boolean dir, boolean state) {
+  
+  state = !state; // The LED's on the relays are inverted.
   
   digitalWrite(fanPins[boxNum][dir], state);
   
