@@ -4,6 +4,12 @@
 // Configures the fan pins correctly.
 void setup_fans() {
   
+  for (int i = 0; i < BOXAMOUNT; i++) {
+    // Set all pins to output
+    pinMode(fanPins[i][IN], OUTPUT);
+    pinMode(fanPins[i][OUT], OUTPUT);
+  }
+  
 }
 
 

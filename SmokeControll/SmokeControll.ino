@@ -4,11 +4,10 @@
 #include "constants.h"
 
 void setup() {
-  set_fan(1, IN, ON);
+  setup_fans();
 }
 
 
 void loop() {
-  
-  
+  set_fan(1, IN, ON);
 }
