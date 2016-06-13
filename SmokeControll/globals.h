@@ -13,7 +13,7 @@ const bool OFF = false;
 const int BOXAMOUNT = 5;
 
 // Time needed to clear a box (in milliseconds).
-const int CLEARTIME = 1500;
+const int DEFAULTCLEARTIME = 1500;
 
 
 // ---- Pin numbers -----------------------------------------------

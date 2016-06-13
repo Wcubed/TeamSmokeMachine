@@ -57,6 +57,8 @@ void loop() {
 // ---- parseCommand ---------------------------------------------------------------------------
 
 // Individual Set
+// Sets a fan or valve to a particular state.
+//
 // A typical individual set command looks like this:
 // sf2i0
 //
@@ -68,6 +70,8 @@ void loop() {
 // - ON (1) or OFF (0).
 
 // Set Timed Flow
+// Starts an input or output flow that lasts a cretain time.
+//
 // A flow command looks like this:
 // f3i1000
 //
@@ -78,8 +82,15 @@ void loop() {
 // - Time in milliseconds. 0 is close.
 
 // Clear All
+// Runs all the output flows for a certain amount of time.
+//
 // The clear all command is just one letter:
 // c
+// For the default clear time.
+//
+// Or with a number after it:
+// c3000
+// Where the number is the time in milliseconds.
 
 
 // Parses a command given to it.
@@ -172,8 +183,15 @@ void parseCommand(String command) {
     
     // ---- Clear All ------------------------------------------------------------------------
     
+    int time = DEFAULTCLEARTIME;
+    
+    // Check if a time value is given.
+    if (command.length() > 1) {
+      time = command.substring(1).toInt();
+    }
+    
     for (int i = 0; i < BOXAMOUNT; i++) {
-      start_flow(i, OUT, CLEARTIME);
+      start_flow(i, OUT, time);
     }
     
   }
