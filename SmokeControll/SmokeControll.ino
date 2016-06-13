@@ -4,7 +4,7 @@
 #include "constants.h"
 
 void setup() {
-  set_fan(1, IN, 10);
+  set_fan(1, IN, ON);
 }
 
 
