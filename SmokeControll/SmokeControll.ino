@@ -26,10 +26,6 @@ void setup() {
   // Close everything;
   stop_all_fans();
   close_all_valves();
-  
-  // Test the flow command.
-  start_flow(0, IN, 1000);
-  start_flow(0, OUT, 1500);
 }
 
 
