@@ -2,13 +2,18 @@
  
 Servo myservo;  // create servo object to control a servo 
 
-void set_valve(int cubeNum, int valveNum, boolean valveState;) {
+// Opens or closes a valve.
+//
+// boxNum: Box number.
+// valveNum: Either IN or OUT.
+// valveState: Either ON or OFF.
+void set_valve(int boxNum, int valveNum, boolean valveState;) {
   int valveOpen = 90;
   int valveClosed = 0;
   
   if(valveState) {
-    valveServo[cubeNum][valveNum].write(valveOpen);
+    valveServo[boxNum][valveNum].write(valveOpen);
   } else {
-    valveServo[cubeNum][valveNum].write(valveClosed);
+    valveServo[boxNum][valveNum].write(valveClosed);
   }
 }

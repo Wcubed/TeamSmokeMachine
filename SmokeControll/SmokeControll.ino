@@ -9,6 +9,8 @@ String inputString = "";
 boolean newCommand = false; // True when a complete command is in the string.
 
 
+// ---- setup --------------------------------------------------------------------------
+
 void setup() {
   // Start serial communication.
   Serial.begin(9600);
@@ -20,6 +22,8 @@ void setup() {
   stop_all_fans();
 }
 
+
+// ---- loop ---------------------------------------------------------------------------
 
 void loop() {
   // Check if there is a command.
@@ -34,6 +38,7 @@ void loop() {
 }
 
 
+// ---- serialEvent ---------------------------------------------------------------------------
 
 void serialEvent() {
   while (Serial.available()) {
