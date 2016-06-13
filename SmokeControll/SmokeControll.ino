@@ -55,6 +55,7 @@ void loop() {
 
 // ---- parseCommand ---------------------------------------------------------------------------
 
+// Individual Set
 // A typical individual set command looks like this:
 // sf2i0
 //
@@ -65,6 +66,7 @@ void loop() {
 // - IN (i) or OUT (o).
 // - ON (1) or OFF (0).
 
+// Set Timed Flow
 // A flow command looks like this:
 // f3i1000
 //
@@ -73,6 +75,10 @@ void loop() {
 // - Box number (0 -> BOXAMOUNT).
 // - IN (i) or OUT (o).
 // - Time in milliseconds. 0 is close.
+
+// Clear All
+// The clear all command is just one letter:
+// c
 
 
 // Parses a command given to it.
@@ -83,7 +89,7 @@ void parseCommand(String command) {
   
   if (command[0] == 'f') {
     
-    // ---- Flow command -------------------------------------------------------------------------
+    // ---- Timed Flow  -------------------------------------------------------------------------
     
     // Get the box number.
     byte boxNum = command.substring(1,2).toInt();
@@ -109,7 +115,7 @@ void parseCommand(String command) {
     
   } else if (command[0] == 's') {
     
-    // ---- Set command -------------------------------------------------------------------------
+    // ---- Individual Set  -------------------------------------------------------------------------
     
     // Get the device type.
     byte device = byte(command[1]);
@@ -160,7 +166,17 @@ void parseCommand(String command) {
     Serial.print(dir);
     Serial.print(" to ");
     Serial.println(state);
+    
+  } else if (command[0] == 'c') {
+    
+    // ---- Clear All ------------------------------------------------------------------------
+    
+    for (int i = 0; i < BOXAMOUNT; i++) {
+      start_flow(i, OUT, CLEARTIME);
+    }
+    
   }
+  
 }
 
 

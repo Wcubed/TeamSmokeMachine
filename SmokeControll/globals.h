@@ -12,6 +12,10 @@ const bool OFF = false;
 // Number of boxes.
 const int BOXAMOUNT = 5;
 
+// Time needed to clear a box (in milliseconds).
+const int CLEARTIME = 1500;
+
+
 // ---- Pin numbers -----------------------------------------------
 
 const int smokePin = 32;
