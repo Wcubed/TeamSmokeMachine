@@ -1,12 +1,14 @@
 // Creation date: 2016-06-13
 // Controlls the smoke machine, valves and the fans.
 
-#include "constants.h"
+#include "globals.h"
 
 
 // String to hold incoming data.
 String inputString = "";
 boolean newCommand = false; // True when a complete command is in the string.
+
+long lastMillis;
 
 
 // ---- setup --------------------------------------------------------------------------
@@ -24,12 +26,24 @@ void setup() {
   // Close everything;
   stop_all_fans();
   close_all_valves();
+  
+  // Test the flow command.
+  start_flow(0, IN, 500);
 }
 
 
 // ---- loop ---------------------------------------------------------------------------
 
 void loop() {
+  // Calculate delta time.
+  long currentMillis = millis();
+  long dt = currentMillis - lastMillis;
+  lastMillis = currentMillis;
+  
+  // Update the flow timers.
+  update_flow(dt);
+  
+  
   // Check if there is a command.
   if (newCommand) {
     // Parse the command.

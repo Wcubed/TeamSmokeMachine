@@ -32,5 +32,15 @@ const int valvePins[BOXAMOUNT][2] = {
   {10, 11}
 };
 
+// ---- /Pin numbers -----------------------------------------------
 
+
+// Holds the servo values.
 Servo valveServos[BOXAMOUNT][2];
+
+
+// Flow timers.
+// Are set when input/output flow begins.
+// Decrease over time (milliseconds).
+// When one reaches 0 the corresponding valve/fan combination stops.
+int flowTimers[BOXAMOUNT][2];
