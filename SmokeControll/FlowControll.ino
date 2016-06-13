@@ -25,6 +25,17 @@ void update_flow(long dt) {
       }
     }
   }
+  
+  // Smoke timer.
+  
+  if (smokeTimer > 0) {
+    smokeTimer -= dt;
+    
+    if (smokeTimer <= 0) {
+      // Turn smoke machine off.
+      digitalWrite(smokePin, OFF);
+    }
+  }
 }
 
 

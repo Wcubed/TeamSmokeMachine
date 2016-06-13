@@ -14,6 +14,8 @@ const int BOXAMOUNT = 5;
 
 // ---- Pin numbers -----------------------------------------------
 
+const int smokePin = 32;
+
 // Fan control pin numbers.
 const int fanPins[BOXAMOUNT][2] = {
   {22, 23},
@@ -44,3 +46,4 @@ Servo valveServos[BOXAMOUNT][2];
 // Decrease over time (milliseconds).
 // When one reaches 0 the corresponding valve/fan combination stops.
 int flowTimers[BOXAMOUNT][2];
+int smokeTimer; // Timer for the smoke machine.
