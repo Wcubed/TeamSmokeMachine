@@ -1,5 +1,6 @@
-// Creation date: 2016-06-13
 // Controlls the smoke machine, valves and the fans.
+// Author: Stijn Wolters, Wybe Westra
+// Creation date: 2016-06-13
 
 #include "globals.h"
 
