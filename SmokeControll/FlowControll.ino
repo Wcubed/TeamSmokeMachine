@@ -57,3 +57,11 @@ void start_flow(int boxNum, boolean dir, int time) {
   
   flowTimers[boxNum][dir] = time; // Start the flow timer.
 }
+
+
+// Clears all boxes.
+void clear_all(int time) {
+  for (int i = 0; i < BOXAMOUNT; i++) {
+    start_flow(i, OUT, time);
+  }
+}

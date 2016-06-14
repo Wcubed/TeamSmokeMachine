@@ -57,7 +57,7 @@ int smokeTimer; // Timer for the smoke machine.
 // High level control.
 
 // Program states.
-typedef enum {IDLEING, CLEARING, FILLING} ProgramState;
+typedef enum {IDLE, CLEARING, FILLING} ProgramState;
 
 ProgramState programState;
 

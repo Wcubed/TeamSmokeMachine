@@ -41,6 +41,9 @@ void loop() {
   // Update the flow timers.
   update_flow(dt);
   
+  // Update the program state.
+  update_state(dt);
+  
   
   // Check if there is a command.
   if (newCommand) {
@@ -216,9 +219,7 @@ void parseCommand(String command) {
       time = command.substring(1).toInt();
     }
     
-    for (int i = 0; i < BOXAMOUNT; i++) {
-      start_flow(i, OUT, time);
-    }
+    clear_all(time);
     
   } else if (command[0] == 't') {
     
@@ -241,13 +242,9 @@ void parseCommand(String command) {
   } else if (command[0] == 'g') {
     
     // ---- Execute orders --------------------------------------------------------------------------
-    
-    // Transfer currently stored orders to the target variables.
-    targetPolType = polType;
-    
-    for (int i = 0; i < BOXAMOUNT; i++) {
-      targetBoxValues[i] = boxValues[i];
-    }
+
+    execute_state();
+
   }
   
 }
