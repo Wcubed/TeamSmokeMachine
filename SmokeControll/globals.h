@@ -63,6 +63,9 @@ ProgramState programState;
 
 // Current state timer.
 int stateTimer;
+// Waiting time between actions (in milliseconds).
+const int STATEWAITINGTIME = 200;
+
 // Current box being filled.
 int currentTargetBox;
 

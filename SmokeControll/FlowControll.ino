@@ -2,6 +2,13 @@
 // And the timing of them.
 
 
+void setup_state() {
+  for (int i = 0; i < BOXAMOUNT; i++) {
+    boxValues[i] = 0;
+  }
+}
+
+
 // Updates flow timers.
 // Also closes a flow if a timer runs out.
 void update_flow(long dt) {

@@ -24,9 +24,11 @@ void setup() {
   setup_fans();
   setup_valves();
   
+  setup_state();
+  
   // Close everything;
   stop_all_fans();
-  close_all_valves();
+  close_all_valves();  
 }
 
 
@@ -151,8 +153,10 @@ void parseCommand(String command) {
     // Flow time.
     int flowTime = command.substring(3).toInt();
     
-    // Start the flow.
-    start_flow(boxNum, dir, flowTime);
+    if (boxNum >= 0 && boxNum < BOXAMOUNT) {
+      // Start the flow.
+      start_flow(boxNum, dir, flowTime);
+    }
     
   } else if (command[0] == 's') {
     
@@ -188,17 +192,18 @@ void parseCommand(String command) {
       return;
     }
     
-    
-    if (device == 'f') {
-      
-      Serial.print("Setting fan ");
-      set_fan(boxNum, dir, state);
-      
-    } else if (device == 'v') {
-      
-      Serial.print("Setting valve ");
-      set_valve(boxNum, dir, state);
-      
+    if (boxNum >= 0 && boxNum < BOXAMOUNT) {
+      if (device == 'f') {
+        
+        Serial.print("Setting fan ");
+        set_fan(boxNum, dir, state);
+        
+      } else if (device == 'v') {
+        
+        Serial.print("Setting valve ");
+        set_valve(boxNum, dir, state);
+        
+      }
     }
     
     // Debugging.
@@ -236,8 +241,14 @@ void parseCommand(String command) {
     
     int value = command.substring(2).toInt();
     
-    // Set the value for this box.
-    boxValues[boxNum] = value;
+    Serial.println(value);
+    
+    if (boxNum >= 0 && boxNum < BOXAMOUNT) {
+      // Set the value for this box.
+      boxValues[boxNum] = value;
+    }
+    
+    Serial.println(boxValues[boxNum]);
     
   } else if (command[0] == 'g') {
     
