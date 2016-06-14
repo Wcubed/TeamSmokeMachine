@@ -15,6 +15,10 @@ void execute_state() {
       targetBoxValues[i] = boxValues[i];
     }
     
+    // Make sure there is smoke in the buffer.
+    start_smoke_machine(200);
+    
+    
     // Advance the program state.
     programState = CLEARING;
     

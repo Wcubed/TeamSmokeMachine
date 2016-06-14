@@ -129,8 +129,6 @@ void parseCommand(String command) {
   // Remove whitespaces and newlines.
   command.trim();
   
-  Serial.println(command[0]);
-  
   
   if (command[0] == 'f') {
     

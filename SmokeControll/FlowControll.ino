@@ -72,3 +72,9 @@ void clear_all(int time) {
     start_flow(i, OUT, time);
   }
 }
+
+// Starts the smoke machine.
+void start_smoke_machine(int time) {
+  digitalWrite(smokePin, ON);
+  smokeTimer = time;
+}
