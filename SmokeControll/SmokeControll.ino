@@ -245,7 +245,7 @@ void parseCommand(String command) {
     
     if (boxNum >= 0 && boxNum < BOXAMOUNT) {
       // Set the value for this box.
-      boxValues[boxNum] = value;
+      boxValues[boxNum] = value * SMOKEMULTIPLIER;
     }
     
     Serial.println(boxValues[boxNum]);

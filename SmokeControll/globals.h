@@ -63,8 +63,11 @@ ProgramState programState;
 
 // Current state timer.
 int stateTimer;
+
 // Waiting time between actions (in milliseconds).
 const int STATEWAITINGTIME = 200;
+// Multiply incoming smoke values with this scalar.
+const int SMOKEMULTIPLIER = 5;
 
 // Current box being filled.
 int currentTargetBox;
