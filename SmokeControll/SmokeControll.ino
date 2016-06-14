@@ -129,6 +129,8 @@ void parseCommand(String command) {
   // Remove whitespaces and newlines.
   command.trim();
   
+  Serial.println(command[0]);
+  
   
   if (command[0] == 'f') {
     
@@ -163,16 +165,16 @@ void parseCommand(String command) {
     // ---- Individual Set  -------------------------------------------------------------------------
     
     // Get the device type.
-    byte device = byte(command[1]);
+    char device = byte(command[1]);
     
     // Get the box number.
     byte boxNum = command.substring(2,3).toInt();
     
     boolean dir = false;
-    char dirChar = command[4];
+    char dirChar = command[3];
     
     boolean state = false;
-    char stateChar = command[5];
+    char stateChar = command[4];
     
     if (dirChar == 'i') {
       dir = IN;
@@ -191,6 +193,7 @@ void parseCommand(String command) {
       // ! Invalid command.
       return;
     }
+    
     
     if (boxNum >= 0 && boxNum < BOXAMOUNT) {
       if (device == 'f') {
