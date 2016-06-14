@@ -51,3 +51,30 @@ Servo valveServos[BOXAMOUNT][2];
 // When one reaches 0 the corresponding valve/fan combination stops.
 int flowTimers[BOXAMOUNT][2];
 int smokeTimer; // Timer for the smoke machine.
+
+
+// ---- Smoke target control --------------------------------------
+// High level control.
+
+// Program states.
+typedef enum {IDLEING, CLEARING, FILLING} ProgramState;
+
+ProgramState programState;
+
+// Current state timer.
+int stateTimer;
+// Current box being filled.
+int currentTargetBox;
+
+// Pollution types.
+typedef enum {PM10, PM25, N02, O3} PollutionType;
+
+PollutionType polType; // Pollution type.
+
+// Box pollution values.
+int boxValues[BOXAMOUNT];
+
+// ---- Target values of current command being executed ----
+
+PollutionType targetPolType;
+int targetBoxValues[BOXAMOUNT];

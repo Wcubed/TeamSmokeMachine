@@ -69,6 +69,8 @@ void loop() {
 // - IN (i) or OUT (o).
 // - ON (1) or OFF (0).
 
+// ---- Flow level --------------------------------------------------------------------------
+
 // Set Timed Flow
 // Starts an input or output flow that lasts a cretain time.
 //
@@ -91,6 +93,30 @@ void loop() {
 // Or with a number after it:
 // c3000
 // Where the number is the time in milliseconds.
+
+// ---- High level commands ----------------------------------------------------------------------
+
+// Set Pollution type
+//
+// t0
+//
+// - 't' for Type.
+// - Pollution type ID (0 -> 4)
+
+// Set Box Target Value
+//
+// b350
+//
+// - 'b' for Box.
+// - Box number (0 -> BOXAMOUNT).
+// - The rest is the smoke target value.
+
+// Execute Orders.
+// Executes currently stored box value orders.
+//
+// g
+//
+// - 'g' for Go.
 
 
 // Parses a command given to it.
@@ -194,6 +220,34 @@ void parseCommand(String command) {
       start_flow(i, OUT, time);
     }
     
+  } else if (command[0] == 't') {
+    
+    // ---- Pollution type ------------------------------------------------------------------------
+    
+    polType = (PollutionType)command.substring(1, 2).toInt();
+    
+  } else if (command[0] == 'b') {
+    
+    // ---- Target value --------------------------------------------------------------------------
+    
+    // Get the box number.
+    byte boxNum = command.substring(1,2).toInt();
+    
+    int value = command.substring(2).toInt();
+    
+    // Set the value for this box.
+    boxValues[boxNum] = value;
+    
+  } else if (command[0] == 'g') {
+    
+    // ---- Execute orders --------------------------------------------------------------------------
+    
+    // Transfer currently stored orders to the target variables.
+    targetPolType = polType;
+    
+    for (int i = 0; i < BOXAMOUNT; i++) {
+      targetBoxValues[i] = boxValues[i];
+    }
   }
   
 }
