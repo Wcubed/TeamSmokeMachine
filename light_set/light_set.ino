@@ -36,6 +36,10 @@ int polutionType;
 
 void setup() {
   strip1.begin(); // This initializes the NeoPixel library.
+  strip2.begin();
+  strip3.begin();
+  strip4.begin();
+  strip5.begin();
 
   Serial.begin(9600);
 }
@@ -59,14 +63,14 @@ void loop() {
     Serial.print("  ||  boxValue: ");
     Serial.println(boxValue);
 
-    if(header == "T") {
+    if(header == "t") {
       //set the color of the boxes
       Serial.print("Changing the color of the boxes to: ");
       Serial.println(identifier);
       polutionType = identifier;
       setColor();
     } 
-    else if(header == "B") {
+    else if(header == "b") {
       boxValues[identifier] = boxValue;
       Serial.print("Changing the value of the box ");
       Serial.print(identifier);

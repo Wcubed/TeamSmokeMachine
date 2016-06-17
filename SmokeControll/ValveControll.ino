@@ -19,8 +19,8 @@ void setup_valves() {
 // dir: Direction, either IN or OUT.
 // valveState: Either ON or OFF.
 void set_valve(int boxNum, boolean dir, boolean valveState) {
-  int valveOpen = 115;
-  int valveClosed = 26;
+  int valveOpen = 110;
+  int valveClosed = 20;
   
   if(valveState == ON) {
     valveServos[boxNum][dir].write(valveOpen);
