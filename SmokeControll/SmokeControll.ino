@@ -242,6 +242,9 @@ void parseCommand(String command) {
     
     int value = command.substring(2).toInt();
     
+    Serial.print("Setting box ");
+    Serial.print(boxNum);
+    Serial.print(" to ");
     Serial.println(value);
     
     if (boxNum >= 0 && boxNum < BOXAMOUNT) {
@@ -249,6 +252,7 @@ void parseCommand(String command) {
       boxValues[boxNum] = value * SMOKEMULTIPLIER;
     }
     
+    Serial.print("ms ");
     Serial.println(boxValues[boxNum]);
     
   } else if (command[0] == 'g') {
