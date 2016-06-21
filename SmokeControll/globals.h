@@ -53,6 +53,13 @@ int flowTimers[BOXAMOUNT][2];
 int smokeTimer; // Timer for the smoke machine.
 
 
+// Servo timers.
+// When one runs out, a servo is detached. (This prevents jitter when the servo is ).
+int servoTimers[BOXAMOUNT][2];
+const int SERVOATTACHTIME = 500; // Time (in ms) a servo will be "attached" to the Arduino.
+// 500 ms should be enough for the servos to move to the new position.
+
+
 // ---- Smoke target control --------------------------------------
 // High level control.
 

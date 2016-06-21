@@ -1,16 +1,3 @@
-#include <Servo.h> //add the servo library
-
-
-// Configures all valves.
-void setup_valves() {
-  
-  for (int i = 0; i < BOXAMOUNT; i++) {
-    // Attach the servo's.
-    valveServos[i][IN].attach(valvePins[i][IN]);
-    valveServos[i][OUT].attach(valvePins[i][OUT]);
-  }
-  
-}
 
 
 // Opens or closes a valve.

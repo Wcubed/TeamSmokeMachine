@@ -22,7 +22,6 @@ void setup() {
   
   
   setup_fans();
-  setup_valves();
   
   setup_state();
   
@@ -45,6 +44,9 @@ void loop() {
   
   // Update the program state.
   update_state(dt);
+  
+  // Update the servo timers.
+  update_servos(dt);
   
   
   // Check if there is a command.
