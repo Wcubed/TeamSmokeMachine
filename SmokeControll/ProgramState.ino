@@ -43,6 +43,9 @@ void update_state(long dt) {
       // Clearing is done, start filling.
       programState = FILLING;
       
+      // Open the buffer valve.
+      set_valve(5, OUT, ON);
+      
       // Start with the first box.
       currentTargetBox = 0;
       
@@ -63,6 +66,9 @@ void update_state(long dt) {
       } else {
         // Done filling, idle.
         programState = IDLE;
+        
+        // Close the buffer valve.
+        set_valve(5, OUT, OFF);
       }
     } // -------------------------------------------------------------------------------
   }

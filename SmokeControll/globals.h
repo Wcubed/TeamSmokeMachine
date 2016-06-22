@@ -36,7 +36,7 @@ const int valvePins[BOXAMOUNT+1][2] = {
   {7, 6},
   {5, 4},
   {3, 2},
-  {12, 13} // These are for the buffer / smoke machine.
+  {12, 13} // These are for the smoke machine / buffer.
 };
 
 // ---- /Pin numbers -----------------------------------------------
@@ -52,6 +52,9 @@ Servo valveServos[BOXAMOUNT+1][2];
 // When one reaches 0 the corresponding valve/fan combination stops.
 int flowTimers[BOXAMOUNT][2];
 int smokeTimer; // Timer for the smoke machine.
+int smokeValveTimer; // Timer for the smoke valve.
+
+const int SMOKEGRACETIME = 5000; // Time the smoke valve needs to be open after the smoke machine has stopped.
 
 
 // Servo timers.

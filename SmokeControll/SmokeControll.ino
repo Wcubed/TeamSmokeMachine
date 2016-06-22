@@ -202,7 +202,7 @@ void parseCommand(String command) {
     }
     
     
-    if (boxNum >= 0 && boxNum < BOXAMOUNT) {
+    if (boxNum >= 0 && boxNum < BOXAMOUNT+1) {
       if (device == 'f') {
         
         Serial.print("Setting fan ");
