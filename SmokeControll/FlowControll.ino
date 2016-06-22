@@ -41,6 +41,8 @@ void update_flow(long dt) {
     smokeTimer -= dt;
     
     if (smokeTimer <= 0) {
+      Serial.println("Stopping smoke machine.");
+      
       // Turn smoke machine off.
       digitalWrite(smokePin, LOW);
     }
@@ -96,6 +98,8 @@ void clear_all(int time) {
 
 // Starts the smoke machine.
 void start_smoke_machine(int time) {
+  Serial.println("Starting smoke machine.");
+  
   digitalWrite(smokePin, HIGH);
   smokeTimer = time;
   
