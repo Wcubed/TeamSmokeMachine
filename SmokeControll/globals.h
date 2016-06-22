@@ -30,19 +30,20 @@ const int fanPins[BOXAMOUNT][2] = {
 };
 
 // Valve control pin numbers.
-const int valvePins[BOXAMOUNT][2] = {
+const int valvePins[BOXAMOUNT+1][2] = {
   {11, 10},
   {9, 8},
   {7, 6},
   {5, 4},
-  {3, 2}
+  {3, 2},
+  {12, 13} // These are for the buffer / smoke machine.
 };
 
 // ---- /Pin numbers -----------------------------------------------
 
 
 // Holds the servo values.
-Servo valveServos[BOXAMOUNT][2];
+Servo valveServos[BOXAMOUNT+1][2];
 
 
 // Flow timers.
@@ -55,7 +56,7 @@ int smokeTimer; // Timer for the smoke machine.
 
 // Servo timers.
 // When one runs out, a servo is detached. (This prevents jitter when the servo is ).
-int servoTimers[BOXAMOUNT][2];
+int servoTimers[BOXAMOUNT+1][2];
 const int SERVOATTACHTIME = 500; // Time (in ms) a servo will be "attached" to the Arduino.
 // 500 ms should be enough for the servos to move to the new position.
 

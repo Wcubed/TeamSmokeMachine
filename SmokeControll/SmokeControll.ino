@@ -160,6 +160,13 @@ void parseCommand(String command) {
       start_flow(boxNum, dir, flowTime);
     }
     
+    Serial.print("Setting ");
+    Serial.print(dir);
+    Serial.print(" flow of box ");
+    Serial.print(boxNum);
+    Serial.print(" to ");
+    Serial.println(flowTime);
+    
   } else if (command[0] == 's') {
     
     // ---- Individual Set  -------------------------------------------------------------------------

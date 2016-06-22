@@ -10,16 +10,16 @@ void set_valve(int boxNum, boolean dir, boolean valveState) {
   int valveClosed = 20;
   
   if(valveState == ON) {
-    valveServos[boxNum][dir].write(valveOpen);
+    turn_servo(boxNum, dir, valveOpen);
   } else {
-    valveServos[boxNum][dir].write(valveClosed);
+    turn_servo(boxNum, dir, valveClosed);
   }
 }
 
 
 // Closes all valves.
 void close_all_valves() {
-   for (int i = 0; i < BOXAMOUNT; i++) {
+   for (int i = 0; i < BOXAMOUNT+1; i++) {
       set_valve(i, IN, OFF);
       set_valve(i, OUT, OFF);
    } 

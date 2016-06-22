@@ -18,7 +18,7 @@ void turn_servo(int boxNum, boolean dir, int angle) {
 // Detaches any servo who's time reaches 0.
 void update_servos(long dt) {
   
-  for (int i = 0; i < BOXAMOUNT; i++) {
+  for (int i = 0; i < BOXAMOUNT+1; i++) {
     if (servoTimers[i][IN] > 0) {
       servoTimers[i][IN] -= dt;
 
