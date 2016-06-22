@@ -40,6 +40,7 @@ void update_state(long dt) {
       return; // Nothing to do here.
       
     } else if (programState == CLEARING) { // ------------------------------------------
+      Serial.println("Clearing is done, start filling");
       // Clearing is done, start filling.
       programState = FILLING;
       

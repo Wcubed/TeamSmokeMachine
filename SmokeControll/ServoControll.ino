@@ -4,6 +4,12 @@
 // Turns the servo to the supplied angle.
 void turn_servo(int boxNum, boolean dir, int angle) {
   // Attach the servo.
+  Serial.print("Boxnum in turnservo is: ");
+  Serial.print(boxNum);
+  Serial.print(" and dir is: ");
+  Serial.print(dir);
+  Serial.print(" And angle is: ");
+  Serial.println(angle);
   valveServos[boxNum][dir].attach(valvePins[boxNum][dir]);
   
   // Start turning the servo to the new angle.
