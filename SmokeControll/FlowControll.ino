@@ -42,7 +42,7 @@ void update_flow(long dt) {
     
     if (smokeTimer <= 0) {
       // Turn smoke machine off.
-      digitalWrite(smokePin, OFF);
+      digitalWrite(smokePin, LOW);
     }
   }
   
@@ -96,7 +96,7 @@ void clear_all(int time) {
 
 // Starts the smoke machine.
 void start_smoke_machine(int time) {
-  digitalWrite(smokePin, ON);
+  digitalWrite(smokePin, HIGH);
   smokeTimer = time;
   
   set_valve(5, IN, ON);
