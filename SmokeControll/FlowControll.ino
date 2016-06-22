@@ -6,6 +6,8 @@ void setup_state() {
   for (int i = 0; i < BOXAMOUNT; i++) {
     boxValues[i] = 0;
   }
+  
+  pinMode(smokePin, OUTPUT);
 }
 
 
