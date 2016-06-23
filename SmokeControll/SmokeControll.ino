@@ -5,6 +5,9 @@
 #include "globals.h"
 
 
+#define DEBUG;
+
+
 // String to hold incoming data.
 String inputString = "";
 boolean newCommand = false; // True when a complete command is in the string.
@@ -157,19 +160,21 @@ void parseCommand(String command) {
     }
     
     // Flow time.
-    int flowTime = command.substring(3).toInt();
+    long flowTime = command.substring(3).toInt();
     
     if (boxNum >= 0 && boxNum < BOXAMOUNT) {
       // Start the flow.
       start_flow(boxNum, dir, flowTime);
     }
     
-    Serial.print("Setting ");
-    Serial.print(dir);
-    Serial.print(" flow of box ");
-    Serial.print(boxNum);
-    Serial.print(" to ");
-    Serial.println(flowTime);
+    #ifdef DEBUG;
+      Serial.print("Setting ");
+      Serial.print(dir);
+      Serial.print(" flow of box ");
+      Serial.print(boxNum);
+      Serial.print(" to ");
+      Serial.println(flowTime);
+    #endif;
     
   } else if (command[0] == 's') {
     
@@ -209,23 +214,31 @@ void parseCommand(String command) {
     if (boxNum >= 0 && boxNum < BOXAMOUNT+1) {
       if (device == 'f') {
         
-        Serial.print("Setting fan ");
+        #ifdef DEBUG;
+          Serial.print("Setting fan ");
+        #endif;
+        
         set_fan(boxNum, dir, state);
         
       } else if (device == 'v') {
         
-        Serial.print("Setting valve ");
+        #ifdef DEBUG;
+          Serial.print("Setting valve ");
+        #endif;
+        
         set_valve(boxNum, dir, state);
         
       }
     }
     
-    // Debugging.
-    Serial.print(boxNum);
-    Serial.print(" ");
-    Serial.print(dir);
-    Serial.print(" to ");
-    Serial.println(state);
+    #ifdef DEBUG;
+      // Debugging.
+      Serial.print(boxNum);
+      Serial.print(" ");
+      Serial.print(dir);
+      Serial.print(" to ");
+      Serial.println(state);
+    #endif;
     
   } else if (command[0] == 'c') {
     
@@ -255,10 +268,12 @@ void parseCommand(String command) {
     
     long value = command.substring(2).toInt();
     
-    Serial.print("Setting box ");
-    Serial.print(boxNum);
-    Serial.print(" to ");
-    Serial.println(value);
+    #ifdef DEBUG;
+      Serial.print("Setting box ");
+      Serial.print(boxNum);
+      Serial.print(" to ");
+      Serial.println(value);
+    #endif;
     
     if (boxNum >= 0 && boxNum < BOXAMOUNT) {
       if (value > 0) {
@@ -268,8 +283,10 @@ void parseCommand(String command) {
       }
     }
     
-    Serial.print("ms ");
-    Serial.println(boxValues[boxNum]);
+    #ifdef DEBUG;
+      Serial.print("ms ");
+      Serial.println(boxValues[boxNum]);
+    #endif;
     
   } else if (command[0] == 'g') {
     
@@ -277,6 +294,11 @@ void parseCommand(String command) {
 
     execute_state();
 
+  } else if (command[0] == 'm') {
+    // Smoke machine.
+    long value = command.substring(1).toInt();
+    
+    start_smoke_machine(value);
   }
   
 }

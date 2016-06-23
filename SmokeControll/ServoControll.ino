@@ -12,12 +12,15 @@ void setup_servos() {
 // Turns the servo to the supplied angle.
 void turn_servo(int boxNum, boolean dir, int angle) {
   // Attach the servo.
-  Serial.print("Boxnum in turnservo is: ");
-  Serial.print(boxNum);
-  Serial.print(" and dir is: ");
-  Serial.print(dir);
-  Serial.print(" And angle is: ");
-  Serial.println(angle);
+  #ifdef DEBUG;
+    Serial.print("Boxnum in turnservo is: ");
+    Serial.print(boxNum);
+    Serial.print(" and dir is: ");
+    Serial.print(dir);
+    Serial.print(" And angle is: ");
+    Serial.println(angle);
+  #endif;
+  
   valveServos[boxNum][dir].attach(valvePins[boxNum][dir]);
   
   // Start turning the servo to the new angle.
@@ -39,10 +42,13 @@ void update_servos(long dt) {
       if (servoTimers[i][IN] <= 0) {
         // Detach the servo.
         valveServos[i][IN].detach();
-        Serial.print("Detaching ");
-        Serial.print(i);
-        Serial.print(" ");
-        Serial.println(IN);
+        
+        #ifdef DEBUG;
+          Serial.print("Detaching ");
+          Serial.print(i);
+          Serial.print(" ");
+          Serial.println(IN);
+        #endif;
       }
     }
     
@@ -52,10 +58,13 @@ void update_servos(long dt) {
       if (servoTimers[i][OUT] <= 0) {
         // Detach the servo.
         valveServos[i][OUT].detach();
-        Serial.print("Detaching ");
-        Serial.print(i);
-        Serial.print(" ");
-        Serial.println(OUT);
+        
+        #ifdef DEBUG;
+          Serial.print("Detaching ");
+          Serial.print(i);
+          Serial.print(" ");
+          Serial.println(OUT);
+        #endif;
       }
     }
   }

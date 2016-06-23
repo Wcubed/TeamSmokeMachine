@@ -1,5 +1,6 @@
 #include <Servo.h> //add the servo library
 
+
 // Direction variables.
 const bool IN = 0;
 const bool OUT = 1;
@@ -13,7 +14,7 @@ const bool OFF = false;
 const int BOXAMOUNT = 5;
 
 // Time needed to clear a box (in milliseconds).
-const int DEFAULTCLEARTIME = 1000;
+const long DEFAULTCLEARTIME = 1000;
 
 
 // ---- Pin numbers -----------------------------------------------
@@ -73,7 +74,7 @@ typedef enum {IDLE, CLEARING, FILLING} ProgramState;
 ProgramState programState;
 
 // Current state timer.
-int stateTimer;
+long stateTimer;
 
 // Waiting time between actions (in milliseconds).
 const int STATEWAITINGTIME = 200;

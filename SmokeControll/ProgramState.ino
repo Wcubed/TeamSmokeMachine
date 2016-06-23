@@ -37,12 +37,16 @@ void update_state(long dt) {
       return; // Nothing to do here.
       
     } else if (programState == CLEARING) { // ------------------------------------------
-      Serial.println("Clearing is done, start filling");
+    
+      #ifdef DEBUG;
+        Serial.println("Clearing is done, start filling");
+      #endif;
+      
       // Clearing is done, start filling.
       programState = FILLING;
       
       // Open the buffer valve.
-      set_valve(5, OUT, ON);
+      //set_valve(5, OUT, ON);
       
       // Start with the first box.
       currentTargetBox = 0;
@@ -68,8 +72,11 @@ void update_state(long dt) {
         // Done filling, idle.
         programState = IDLE;
         
+        close_all_valves();
+        stop_all_fans();
+        
         // Close the buffer valve.
-        set_valve(5, OUT, OFF);
+        //set_valve(5, OUT, OFF);
       }
     } // -------------------------------------------------------------------------------
   }
