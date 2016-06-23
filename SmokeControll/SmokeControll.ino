@@ -25,9 +25,13 @@ void setup() {
   
   setup_state();
   
+  setup_servos();
+  
   // Close everything;
   stop_all_fans();
-  close_all_valves();  
+  close_all_valves();
+  
+  lastMillis = millis(); // Start the timer.
 }
 
 
@@ -249,7 +253,7 @@ void parseCommand(String command) {
     // Get the box number.
     byte boxNum = command.substring(1,2).toInt();
     
-    unsigned long value = command.substring(2).toInt();
+    long value = command.substring(2).toInt();
     
     Serial.print("Setting box ");
     Serial.print(boxNum);
@@ -258,7 +262,8 @@ void parseCommand(String command) {
     
     if (boxNum >= 0 && boxNum < BOXAMOUNT) {
       // Set the value for this box.
-      boxValues[boxNum] = value * SMOKEMULTIPLIER;
+      // Add the tube travel time for the relevant box.
+      boxValues[boxNum] = (value * SMOKEMULTIPLIER) + BOXWAITINGTIMES[boxNum];
     }
     
     Serial.print("ms ");

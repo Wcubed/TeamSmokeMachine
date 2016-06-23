@@ -47,9 +47,6 @@ void update_state(long dt) {
       // Start with the first box.
       currentTargetBox = 0;
       
-      // Make sure there is smoke in the buffer.
-      start_smoke_machine(200);
-      
     } else if (programState == FILLING) { // -------------------------------------------
             
       if (currentTargetBox < BOXAMOUNT) {

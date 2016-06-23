@@ -13,7 +13,7 @@ const bool OFF = false;
 const int BOXAMOUNT = 5;
 
 // Time needed to clear a box (in milliseconds).
-const int DEFAULTCLEARTIME = 10000;
+const int DEFAULTCLEARTIME = 1000;
 
 
 // ---- Pin numbers -----------------------------------------------
@@ -50,7 +50,7 @@ Servo valveServos[BOXAMOUNT+1][2];
 // Are set when input/output flow begins.
 // Decrease over time (milliseconds).
 // When one reaches 0 the corresponding valve/fan combination stops.
-unsigned long flowTimers[BOXAMOUNT][2];
+long flowTimers[BOXAMOUNT][2];
 int smokeTimer; // Timer for the smoke machine.
 int smokeValveTimer; // Timer for the smoke valve.
 
@@ -59,7 +59,7 @@ const int SMOKEGRACETIME = 5000; // Time the smoke valve needs to be open after 
 
 // Servo timers.
 // When one runs out, a servo is detached. (This prevents jitter when the servo is ).
-unsigned long servoTimers[BOXAMOUNT+1][2];
+long servoTimers[BOXAMOUNT+1][2];
 const int SERVOATTACHTIME = 500; // Time (in ms) a servo will be "attached" to the Arduino.
 // 500 ms should be enough for the servos to move to the new position.
 
@@ -80,6 +80,14 @@ const int STATEWAITINGTIME = 200;
 // Multiply incoming smoke values with this scalar.
 const int SMOKEMULTIPLIER = 5;
 
+const long BOXWAITINGTIMES[BOXAMOUNT] = { // Extra waiting time to allow the smoke to travel through the tubes.
+  0,
+  0,
+  0,
+  0,
+  5500
+};
+
 // Current box being filled.
 int currentTargetBox;
 
@@ -89,9 +97,9 @@ typedef enum {PM10, PM25, N02, O3} PollutionType;
 PollutionType polType; // Pollution type.
 
 // Box pollution values.
-unsigned long boxValues[BOXAMOUNT];
+long boxValues[BOXAMOUNT];
 
 // ---- Target values of current command being executed ----
 
 PollutionType targetPolType;
-unsigned long targetBoxValues[BOXAMOUNT];
+long targetBoxValues[BOXAMOUNT];

@@ -1,6 +1,14 @@
 #include <Servo.h> //add the servo library
 
 
+void setup_servos() {
+   for (int i = 0; i < BOXAMOUNT+1; i++) {
+     servoTimers[i][IN] = 0;
+     servoTimers[i][OUT] = 0;
+   }
+}
+
+
 // Turns the servo to the supplied angle.
 void turn_servo(int boxNum, boolean dir, int angle) {
   // Attach the servo.
@@ -31,6 +39,10 @@ void update_servos(long dt) {
       if (servoTimers[i][IN] <= 0) {
         // Detach the servo.
         valveServos[i][IN].detach();
+        Serial.print("Detaching ");
+        Serial.print(i);
+        Serial.print(" ");
+        Serial.println(IN);
       }
     }
     
@@ -40,6 +52,10 @@ void update_servos(long dt) {
       if (servoTimers[i][OUT] <= 0) {
         // Detach the servo.
         valveServos[i][OUT].detach();
+        Serial.print("Detaching ");
+        Serial.print(i);
+        Serial.print(" ");
+        Serial.println(OUT);
       }
     }
   }
