@@ -261,9 +261,11 @@ void parseCommand(String command) {
     Serial.println(value);
     
     if (boxNum >= 0 && boxNum < BOXAMOUNT) {
-      // Set the value for this box.
-      // Add the tube travel time for the relevant box.
-      boxValues[boxNum] = (value * SMOKEMULTIPLIER) + BOXWAITINGTIMES[boxNum];
+      if (value > 0) {
+        // Set the value for this box.
+        // Add the tube travel time for the relevant box.
+        boxValues[boxNum] = (value * SMOKEMULTIPLIER) + BOXWAITINGTIMES[boxNum];
+      }
     }
     
     Serial.print("ms ");

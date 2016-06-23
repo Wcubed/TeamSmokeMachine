@@ -81,11 +81,11 @@ const int STATEWAITINGTIME = 200;
 const int SMOKEMULTIPLIER = 5;
 
 const long BOXWAITINGTIMES[BOXAMOUNT] = { // Extra waiting time to allow the smoke to travel through the tubes.
+  2000,
+  1000,
   0,
-  0,
-  0,
-  0,
-  5500
+  1000,
+  2000
 };
 
 // Current box being filled.
