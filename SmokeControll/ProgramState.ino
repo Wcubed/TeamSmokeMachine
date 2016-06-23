@@ -15,9 +15,6 @@ void execute_state() {
       targetBoxValues[i] = boxValues[i];
     }
     
-    // Make sure there is smoke in the buffer.
-    start_smoke_machine(200);
-    
     
     // Advance the program state.
     programState = CLEARING;
@@ -49,6 +46,9 @@ void update_state(long dt) {
       // Start with the first box.
       currentTargetBox = 0;
       
+      // Make sure there is smoke in the buffer.
+      start_smoke_machine(200);
+      
     } else if (programState == FILLING) { // -------------------------------------------
             
       if (currentTargetBox < BOXAMOUNT) {
@@ -58,6 +58,9 @@ void update_state(long dt) {
           start_flow(currentTargetBox, IN, targetBoxValues[currentTargetBox]);
           
           stateTimer = targetBoxValues[currentTargetBox] + STATEWAITINGTIME;
+          
+          // Make sure there is smoke in the buffer.
+          start_smoke_machine(200);
         }
         
         // Next box.

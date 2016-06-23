@@ -249,7 +249,7 @@ void parseCommand(String command) {
     // Get the box number.
     byte boxNum = command.substring(1,2).toInt();
     
-    int value = command.substring(2).toInt();
+    unsigned long value = command.substring(2).toInt();
     
     Serial.print("Setting box ");
     Serial.print(boxNum);
