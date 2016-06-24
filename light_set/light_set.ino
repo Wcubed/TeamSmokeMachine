@@ -8,6 +8,9 @@
 #include <avr/power.h>
 #endif
 
+
+//#define DEBUG
+
 // Which pin on the Arduino is connected to the NeoPixels?
 // On a Trinket or Gemma we suggest changing this to 1
 const int stripPin[] = {
@@ -49,42 +52,52 @@ void loop() {
   // see if there's incoming serial data:
   // print the string when a newline arrives:
   if (newCommand) {
-    Serial.println(inputString);
+    #ifdef DEBUG;
+      Serial.println(inputString);
+    #endif;
 
     //seperate the input into usable information
     String header = inputString.substring(0, 1);
     int identifier = inputString.substring(1, 2).toInt();
     int boxValue = inputString.substring(2).toInt();
 
-    Serial.print("header: ");
-    Serial.print(header);
-    Serial.print("  ||  identifier: ");
-    Serial.print(identifier);
-    Serial.print("  ||  boxValue: ");
-    Serial.println(boxValue);
+    #ifdef DEBUG;
+      Serial.print("header: ");
+      Serial.print(header);
+      Serial.print("  ||  identifier: ");
+      Serial.print(identifier);
+      Serial.print("  ||  boxValue: ");
+      Serial.println(boxValue);
+    #endif;
 
     if (header == "a") {
       for ( int i = 0; i < 5; i++) {
         boxValues[i] = boxValue;
       }
-      Serial.print("Changing the value of all boxes to ");
-      Serial.println(boxValue);
+      #ifdef DEBUG;
+        Serial.print("Changing the value of all boxes to ");
+        Serial.println(boxValue);
+      #endif;
       setColor();
     }
 
     if (header == "t") {
       //set the color of the boxes
-      Serial.print("Changing the color of the boxes to: ");
-      Serial.println(identifier);
+      #ifdef DEBUG;
+        Serial.print("Changing the color of the boxes to: ");
+        Serial.println(identifier);
+      #endif;
       polutionType = identifier;
       setColor();
     }
     else if (header == "b") {
       boxValues[identifier] = boxValue;
-      Serial.print("Changing the value of the box ");
-      Serial.print(identifier);
-      Serial.print(" to: ");
-      Serial.println(boxValue);
+      #ifdef DEBUG;
+        Serial.print("Changing the value of the box ");
+        Serial.print(identifier);
+        Serial.print(" to: ");
+        Serial.println(boxValue);
+      #endif;
       setColor();
     }
     // clear the string:
@@ -109,29 +122,41 @@ void serialEvent() {
 }
 
 void setColor() {
-  Serial.println("Checking polution type");
+  #ifdef DEBUG;
+    Serial.println("Checking polution type");
+  #endif;
   switch (polutionType) {
     case 0:
-      Serial.println("Polutiontype is PM10");
+      #ifdef DEBUG;
+        Serial.println("Polutiontype is PM10");
+      #endif;
       setBoxesGreen();
       break;
     case 1:
-      Serial.println("Polutiontype is PM2.5");
+      #ifdef DEBUG;
+        Serial.println("Polutiontype is PM2.5");
+      #endif;
       setBoxesRed();
       break;
     case 2:
-      Serial.println("Polutiontype is N02");
+      #ifdef DEBUG;
+        Serial.println("Polutiontype is N02");
+      #endif;
       setBoxesYellow();
       break;
     case 3:
-      Serial.println("Polutiontype is O3");
+      #ifdef DEBUG;
+        Serial.println("Polutiontype is O3");
+      #endif;
       setBoxesBlue();
       break;
 
     default:
       // if nothing else matches, do the default
       // default is optional
-      Serial.println("Polutiontype is unknown");
+      #ifdef DEBUG;
+        Serial.println("Polutiontype is unknown");
+      #endif;
       setBoxesWhite();
       break;
   }

@@ -62,7 +62,11 @@ void update_state(long dt) {
           stateTimer = targetBoxValues[currentTargetBox] + STATEWAITINGTIME;
           
           // Make sure there is smoke in the buffer.
-          start_smoke_machine(200);
+          if (currentTargetBox == 0) {
+            start_smoke_machine(1000);
+          } else {
+            start_smoke_machine(500);
+          }
         }
         
         // Next box.

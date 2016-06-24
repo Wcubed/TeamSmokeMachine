@@ -5,7 +5,7 @@
 #include "globals.h"
 
 
-#define DEBUG;
+//#define DEBUG;
 
 
 // String to hold incoming data.

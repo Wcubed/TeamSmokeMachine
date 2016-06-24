@@ -14,7 +14,7 @@ const bool OFF = false;
 const int BOXAMOUNT = 5;
 
 // Time needed to clear a box (in milliseconds).
-const long DEFAULTCLEARTIME = 1000;
+const long DEFAULTCLEARTIME = 60000;
 
 
 // ---- Pin numbers -----------------------------------------------
@@ -52,16 +52,16 @@ Servo valveServos[BOXAMOUNT+1][2];
 // Decrease over time (milliseconds).
 // When one reaches 0 the corresponding valve/fan combination stops.
 long flowTimers[BOXAMOUNT][2];
-int smokeTimer; // Timer for the smoke machine.
-int smokeValveTimer; // Timer for the smoke valve.
+long smokeTimer; // Timer for the smoke machine.
+long smokeValveTimer; // Timer for the smoke valve.
 
-const int SMOKEGRACETIME = 5000; // Time the smoke valve needs to be open after the smoke machine has stopped.
+const long SMOKEGRACETIME = 5000; // Time the smoke valve needs to be open after the smoke machine has stopped.
 
 
 // Servo timers.
 // When one runs out, a servo is detached. (This prevents jitter when the servo is ).
 long servoTimers[BOXAMOUNT+1][2];
-const int SERVOATTACHTIME = 500; // Time (in ms) a servo will be "attached" to the Arduino.
+const long SERVOATTACHTIME = 500; // Time (in ms) a servo will be "attached" to the Arduino.
 // 500 ms should be enough for the servos to move to the new position.
 
 
@@ -77,13 +77,13 @@ ProgramState programState;
 long stateTimer;
 
 // Waiting time between actions (in milliseconds).
-const int STATEWAITINGTIME = 200;
+const long STATEWAITINGTIME = 200;
 // Multiply incoming smoke values with this scalar.
-const int SMOKEMULTIPLIER = 5;
+const long SMOKEMULTIPLIER = 40;
 
 const long BOXWAITINGTIMES[BOXAMOUNT] = { // Extra waiting time to allow the smoke to travel through the tubes.
+  3000,
   2000,
-  1000,
   0,
   1000,
   2000

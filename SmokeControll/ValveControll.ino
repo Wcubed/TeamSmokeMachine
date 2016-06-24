@@ -10,7 +10,12 @@ void set_valve(int boxNum, boolean dir, boolean valveState) {
   int valveClosed = 20;
   
   if(valveState == ON) {
-    turn_servo(boxNum, dir, valveOpen);
+    
+    /*if (boxNum == 2 && dir == IN) { // Special case for the middle box, open the valve a little less.
+      turn_servo(boxNum, dir, valveOpen - 40);
+    } else {*/
+      turn_servo(boxNum, dir, valveOpen);
+    //}
   } else {
     turn_servo(boxNum, dir, valveClosed);
   }

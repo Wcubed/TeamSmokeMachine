@@ -67,6 +67,7 @@ void stop_flow(int boxNum, boolean dir) {
   set_fan(boxNum, dir, OFF);
   set_valve(boxNum, dir, OFF);
   
+  
   // If the flow is IN, the OUT valve will have been opened and will need to be closed as well.
   if (dir == IN) {
     set_valve(boxNum, OUT, OFF);
@@ -81,6 +82,7 @@ void stop_flow(int boxNum, boolean dir) {
 void start_flow(int boxNum, boolean dir, int time) {
   set_fan(boxNum, dir, ON);
   set_valve(boxNum, dir, ON);
+  
   
   // If the flow is IN, the OUT valve needs to be opened as well.
   if (dir == IN) {
